@@ -7,7 +7,8 @@ import { Product } from 'src/app/model/product/product';
   providedIn: 'root',
 })
 export class ProductService {
-  private baseUrl = 'http://localhost:55420/grocery-project/api/products';
+  //private baseUrl = 'http://localhost:55420/grocery-project/api/products';
+  private baseUrl = environment.apiUrl + '/products';
 
   constructor(private http: HttpClient) {}
 
