@@ -7,7 +7,8 @@ import { Payment } from 'src/app/model/payment/payment';
   providedIn: 'root',
 })
 export class PaymentService {
-  private baseUrl = 'http://localhost:55420/grocery-project/api/payments';
+  //private baseUrl = 'http://localhost:55420/grocery-project/api/payments';
+  private baseUrl = environment.apiUrl + '/payments';
 
   constructor(private http: HttpClient) {}
 
