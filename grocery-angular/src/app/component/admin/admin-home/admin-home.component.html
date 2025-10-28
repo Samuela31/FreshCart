@@ -1,0 +1,47 @@
+<div class="container my-5">
+  <h2 class="text-center mb-4">Welcome to Admin Dashboard!</h2>
+
+  <div class="row g-4 justify-content-center">
+    <!-- Add Inventory -->
+    <div class="col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-box-seam display-4 text-primary"></i>
+          <h5 class="card-title mt-3">Add Inventory</h5>
+          <p class="card-text">Add new grocery items to your inventory.</p>
+          <button class="btn btn-primary w-100" (click)="addProduct()">
+            Go
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Product -->
+    <div class="col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-pencil-square display-4 text-warning"></i>
+          <h5 class="card-title mt-3">Update Product</h5>
+          <p class="card-text">Modify product details or pricing.</p>
+          <button class="btn btn-warning w-100" (click)="updateProduct()">
+            Go
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Promotions -->
+    <div class="col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-megaphone-fill display-4 text-success"></i>
+          <h5 class="card-title mt-3">Promotions</h5>
+          <p class="card-text">Create or manage discount campaigns.</p>
+          <button class="btn btn-success w-100" (click)="promotions()">
+            Go
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

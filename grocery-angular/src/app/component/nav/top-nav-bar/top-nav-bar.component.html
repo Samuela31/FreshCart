@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4 fixed-top">
+  <div class="container-fluid">
+    <!-- Left side: Home -->
+    <a class="navbar-brand" *ngIf="!isAdminLoggedIn()" routerLink="/home"
+      ><i class="bi bi-basket2"></i> Home</a
+    >
+
+    <a class="navbar-brand" *ngIf="isAdminLoggedIn()" routerLink="/admin-home"
+      ><i class="bi bi-basket2"></i> Home</a
+    >
+
+    <!-- Right side: Login/Signup or Profile dropdown -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <!-- If not logged in -->
+        <li class="nav-item" *ngIf="!isLoggedIn()">
+          <a class="navbar-brand" routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item" *ngIf="!isLoggedIn()">
+          <a class="navbar-brand" routerLink="/signup">Sign Up</a>
+        </li>
+
+        <!-- If logged in -->
+        <li
+          class="nav-item position-relative me-3"
+          *ngIf="isCustomerLoggedIn()"
+        >
+          <a class="navbar-brand" routerLink="/cart">
+            <i class="bi bi-cart"></i> Cart
+          </a>
+        </li>
+
+        <li class="nav-item dropdown" *ngIf="isLoggedIn()">
+          <a
+            class="navbar-brand dropdown-toggle"
+            href="#"
+            id="profileDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="bi bi-person-circle"></i> Profile
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="profileDropdown"
+          >
+            <li>
+              <a class="dropdown-item" routerLink="/"
+                ><i class="bi bi-person-fill"></i> View Profile</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                *ngIf="isCustomerLoggedIn()"
+                routerLink="/"
+                ><i class="bi bi-clock-history"></i> Order History</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/"
+                ><i class="bi bi-gear"></i> Settings</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item text-danger" (click)="logout()"
+                ><i class="bi bi-box-arrow-right"></i> Logout</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

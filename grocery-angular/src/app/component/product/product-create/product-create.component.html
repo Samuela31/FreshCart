@@ -1,0 +1,141 @@
+<div class="container my-5">
+  <h2 class="text-center mb-4">Add New Product</h2>
+
+  <form
+    #productForm="ngForm"
+    (ngSubmit)="onSubmit(productForm)"
+    class="p-4 border rounded shadow-sm bg-light"
+  >
+    <!-- Product Name -->
+    <div class="mb-3">
+      <label class="form-label">Product Name</label>
+      <input
+        type="text"
+        name="productName"
+        [(ngModel)]="product.productName"
+        required
+        minlength="3"
+        #productName="ngModel"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && productName.invalid }"
+      />
+      <div class="invalid-feedback" *ngIf="submitted && productName.errors">
+        <div *ngIf="productName.errors['required']">
+          Product name is required.
+        </div>
+        <div *ngIf="productName.errors['minlength']">
+          Must be at least 3 characters long.
+        </div>
+      </div>
+    </div>
+
+    <!-- Category -->
+    <div class="mb-3">
+      <label class="form-label">Category</label>
+      <select
+        name="category"
+        [(ngModel)]="product.category"
+        required
+        #category="ngModel"
+        class="form-select"
+        [ngClass]="{ 'is-invalid': submitted && category.invalid }"
+      >
+        <option value="" disabled>Select a category</option>
+        <option *ngFor="let c of categories" [value]="c">{{ c }}</option>
+      </select>
+      <div class="invalid-feedback" *ngIf="submitted && category.errors">
+        <div *ngIf="category.errors['required']">Category is required.</div>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label class="form-label">Description (optional)</label>
+      <textarea
+        name="description"
+        [(ngModel)]="product.description"
+        class="form-control"
+      ></textarea>
+    </div>
+
+    <!-- Price -->
+    <div class="mb-3">
+      <label class="form-label">Price</label>
+      <input
+        type="number"
+        name="price"
+        [(ngModel)]="product.price"
+        required
+        min="0.01"
+        #price="ngModel"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && price.invalid }"
+      />
+      <div class="invalid-feedback" *ngIf="submitted && price.errors">
+        <div *ngIf="price.errors['required']">Price is required.</div>
+        <div *ngIf="price.errors['min']">Price must be greater than 0.</div>
+      </div>
+    </div>
+
+    <!-- Quantity -->
+    <div class="mb-3">
+      <label class="form-label">Quantity</label>
+      <input
+        type="number"
+        name="quantity"
+        [(ngModel)]="product.quantity"
+        required
+        min="1"
+        #quantity="ngModel"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && quantity.invalid }"
+      />
+      <div class="invalid-feedback" *ngIf="submitted && quantity.errors">
+        <div *ngIf="quantity.errors['required']">Quantity is required.</div>
+        <div *ngIf="quantity.errors['min']">Quantity must be at least 1.</div>
+      </div>
+    </div>
+
+    <!-- Image URL -->
+    <div class="mb-3">
+      <label class="form-label">Image URL</label>
+      <input
+        type="text"
+        name="imageUrl"
+        [(ngModel)]="product.imageUrl"
+        required
+        pattern="https?://.+"
+        #imageUrl="ngModel"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && imageUrl.invalid }"
+      />
+      <div class="invalid-feedback" *ngIf="submitted && imageUrl.errors">
+        <div *ngIf="imageUrl.errors['required']">Image URL is required.</div>
+        <div *ngIf="imageUrl.errors['pattern']">
+          Please enter a valid URL (http/https).
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Preview -->
+    <div *ngIf="product.imageUrl" class="text-center mb-3">
+      <img
+        [src]="product.imageUrl"
+        alt="Preview"
+        class="img-fluid rounded"
+        style="max-width: 150px"
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary w-100">Create Product</button>
+
+    <!-- Alerts -->
+    <div *ngIf="successMessage" class="alert alert-success mt-3">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+      {{ errorMessage }}
+    </div>
+  </form>
+</div>

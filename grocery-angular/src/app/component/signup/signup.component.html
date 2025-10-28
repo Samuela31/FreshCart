@@ -1,0 +1,133 @@
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+  <div class="card p-4 shadow-lg" style="width: 420px">
+    <h3 class="text-center mb-4">Create Account</h3>
+
+    <form (ngSubmit)="onSubmit()" #signupForm="ngForm" novalidate>
+      <!-- Name -->
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          [(ngModel)]="newCustomer.name"
+          #name="ngModel"
+          required
+        />
+        <div
+          *ngIf="name.invalid && name.touched"
+          class="text-danger small mt-1"
+        >
+          Name is required.
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          [(ngModel)]="newCustomer.email"
+          #email="ngModel"
+          required
+          email
+        />
+        <div
+          *ngIf="email.invalid && email.touched"
+          class="text-danger small mt-1"
+        >
+          <div *ngIf="email.errors?.['required']">Email is required.</div>
+          <div *ngIf="email.errors?.['email']">Invalid email format.</div>
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="mb-3">
+        <label class="form-label">Phone</label>
+        <input
+          type="text"
+          class="form-control"
+          name="phone"
+          [(ngModel)]="newCustomer.phone"
+          #phone="ngModel"
+          required
+          pattern="^[0-9]{10}$"
+        />
+        <div
+          *ngIf="phone.invalid && phone.touched"
+          class="text-danger small mt-1"
+        >
+          <div *ngIf="phone.errors?.['required']">
+            Phone number is required.
+          </div>
+          <div *ngIf="phone.errors?.['pattern']">
+            Phone number must be exactly 10 digits.
+          </div>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="password"
+          #passwordField="ngModel"
+          minlength="8"
+          required
+        />
+        <div
+          *ngIf="passwordField.invalid && passwordField.touched"
+          class="text-danger small mt-1"
+        >
+          <div *ngIf="passwordField.errors?.['required']">
+            Password is required.
+          </div>
+          <div *ngIf="passwordField.errors?.['minlength']">
+            Password must be at least 8 characters long.
+          </div>
+        </div>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="mb-3">
+        <label class="form-label">Confirm Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          #confirmPasswordField="ngModel"
+          required
+        />
+        <div
+          *ngIf="confirmPasswordField.touched && !passwordsMatch()"
+          class="text-danger small mt-1"
+        >
+          Passwords do not match.
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        class="btn btn-success w-100"
+        [disabled]="!signupForm.valid || !passwordsMatch()"
+      >
+        Sign Up
+      </button>
+
+      <!-- Messages -->
+      <div *ngIf="successMessage" class="text-success text-center mt-3">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="text-danger text-center mt-3">
+        {{ errorMessage }}
+      </div>
+    </form>
+  </div>
+</div>
