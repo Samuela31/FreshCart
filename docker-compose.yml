@@ -2,16 +2,18 @@ version: '3.8'
 
 services:
   backend:
-    build: ./grocery-spring
+    image: samuela39/spring-backend:latest
     container_name: spring-backend
     ports:
       - "55420:55420"
+    restart: always
 
   frontend:
-    build: ./grocery-angular
+    image: samuela39/angular-frontend:latest
     container_name: angular-frontend
     ports:
       - "80:80"
     depends_on:
       - backend
+    restart: always
 
