@@ -1,1 +1,17 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./grocery-spring
+    container_name: spring-backend
+    ports:
+      - "55420:55420"
+
+  frontend:
+    build: ./grocery-angular
+    container_name: angular-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
 
