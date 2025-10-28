@@ -8,8 +8,11 @@ import { SignupRequest } from 'src/app/model/signup/signup-request';
   providedIn: 'root',
 })
 export class AuthService {
-  private loginUrl = 'http://localhost:55420/grocery-project/api/auth';
-  private signupUrl = 'http://localhost:55420/grocery-project/api/customers';
+  //private loginUrl = 'http://localhost:55420/grocery-project/api/auth';
+  private loginUrl = environment.apiUrl + '/auth';
+
+  //private signupUrl = 'http://localhost:55420/grocery-project/api/customers';
+  private signupUrl = environment.apiUrl + '/customers';
 
   constructor(private http: HttpClient) {}
 
