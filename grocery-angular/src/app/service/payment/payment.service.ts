@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Payment } from 'src/app/model/payment/payment';
+import { environment } from 'src/environment/environment';
+
 
 @Injectable({
   providedIn: 'root',
