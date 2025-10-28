@@ -7,7 +7,8 @@ import { Customer } from 'src/app/model/customer/customer';
   providedIn: 'root',
 })
 export class CustomerService {
-  private baseUrl = 'http://localhost:55420/grocery-project/api/customers'; // Spring Boot base URL
+  //private baseUrl = 'http://localhost:55420/grocery-project/api/customers'; 
+  private baseUrl = environment.apiUrl + '/customers';
 
   constructor(private http: HttpClient) {}
 
