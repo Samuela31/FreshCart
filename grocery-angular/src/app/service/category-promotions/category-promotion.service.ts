@@ -7,8 +7,8 @@ import { CategoryPromotion } from 'src/app/model/category-promotions/category-pr
   providedIn: 'root',
 })
 export class CategoryPromotionService {
-  private baseUrl =
-    'http://localhost:55420/grocery-project/api/category-promotions';
+  //private baseUrl = 'http://localhost:55420/grocery-project/api/category-promotions';
+  private baseUrl = environment.apiUrl + '/category-promotions';
 
   constructor(private http: HttpClient) {}
 
