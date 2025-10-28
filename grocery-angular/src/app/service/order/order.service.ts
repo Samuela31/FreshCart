@@ -8,7 +8,8 @@ import { Order } from 'src/app/model/order/order';
   providedIn: 'root',
 })
 export class OrderService {
-  private baseUrl = 'http://localhost:55420/grocery-project/api/orders';
+  //private baseUrl = 'http://localhost:55420/grocery-project/api/orders';
+  private baseUrl = environment.apiUrl + '/orders';
 
   constructor(private http: HttpClient) {}
 
