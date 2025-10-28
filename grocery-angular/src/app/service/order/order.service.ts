@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { OrderRequest } from 'src/app/model/order/order-request';
 import { Order } from 'src/app/model/order/order';
+import { environment } from 'src/environment/environment';
+
 
 @Injectable({
   providedIn: 'root',
