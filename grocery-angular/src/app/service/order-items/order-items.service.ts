@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { OrderItem } from 'src/app/model/order-item/order-item';
+import { environment } from 'src/environment/environment';
+
 
 @Injectable({
   providedIn: 'root',
