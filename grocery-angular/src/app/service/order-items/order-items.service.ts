@@ -9,7 +9,8 @@ import { OrderItem } from 'src/app/model/order-item/order-item';
   providedIn: 'root',
 })
 export class OrderItemService {
-  private baseUrl = 'http://localhost:55420/grocery-project/api/order-items';
+  //private baseUrl = 'http://localhost:55420/grocery-project/api/order-items';
+  private baseUrl = environment.apiUrl + '/order-items';
 
   constructor(private http: HttpClient) {}
 
