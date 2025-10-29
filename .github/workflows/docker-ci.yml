@@ -66,19 +66,10 @@ jobs:
               sudo usermod -aG docker $USER
             fi
 
-            # Install Docker Compose if not installed
-            if ! command -v docker-compose &> /dev/null
-            then
-              echo "Docker Compose not found. Installing Docker Compose..."
-              DOCKER_COMPOSE_VERSION="2.20.2"
-              sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-              sudo chmod +x /usr/local/bin/docker-compose
-            fi
-
             echo "Environment ready"
 
-            # Pull latest images and deploy
+            # Pull latest images and deploy using Docker Compose v2
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/spring-backend:latest
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/angular-frontend:latest
-            sudo docker-compose down
-            sudo docker-compose up -d --remove-orphans
+            sudo docker compose down
+            sudo docker compose up -d --remove-orphans
