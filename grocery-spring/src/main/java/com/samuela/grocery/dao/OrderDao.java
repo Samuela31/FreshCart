@@ -12,4 +12,6 @@ public interface OrderDao extends JpaRepository<OrderEntity, Integer> {
 
 	// To get all orders for a customer
 	List<OrderEntity> findByCustomerCustomerId(int customerId);
+	
+	List<OrderEntity> findByCustomerEmail(String email);
 }

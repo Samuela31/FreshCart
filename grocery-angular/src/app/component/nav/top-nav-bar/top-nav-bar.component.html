@@ -46,7 +46,10 @@
             aria-labelledby="profileDropdown"
           >
             <li>
-              <a class="dropdown-item" routerLink="/"
+              <a
+                class="dropdown-item"
+                *ngIf="!isAdminLoggedIn()"
+                routerLink="/profile"
                 ><i class="bi bi-person-fill"></i> View Profile</a
               >
             </li>
@@ -54,7 +57,7 @@
               <a
                 class="dropdown-item"
                 *ngIf="isCustomerLoggedIn()"
-                routerLink="/"
+                routerLink="/order-history"
                 ><i class="bi bi-clock-history"></i> Order History</a
               >
             </li>

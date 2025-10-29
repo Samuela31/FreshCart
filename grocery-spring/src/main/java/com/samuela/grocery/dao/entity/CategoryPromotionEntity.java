@@ -22,7 +22,7 @@ public class CategoryPromotionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "category", nullable = false)
+    @Column(name = "category", nullable = false, unique = true)
     @NotBlank
     private String category;
 

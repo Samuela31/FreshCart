@@ -44,4 +44,10 @@ export class OrderService {
   deleteOrder(orderId: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${orderId}`);
   }
+
+  getOrdersByCustomerEmail(email: string): Observable<Order[]> {
+    return this.http.get<Order[]>(
+      `${this.baseUrl}/customer/email/${encodeURIComponent(email)}`
+    );
+  }
 }

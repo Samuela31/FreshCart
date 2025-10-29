@@ -109,4 +109,20 @@ public class OrderController {
         logger.info("Order deleted successfully with ID: {}", id);
         return ResponseEntity.noContent().build(); // 204 No Content
     }
+    
+    // Get orders by customer  email
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CUSTOMER')")
+    @GetMapping("/customer/email/{email}")
+    public ResponseEntity<List<OrderEntity>> getOrdersByCustomerEmail(@PathVariable String email) {
+        logger.info("Fetching orders for customer email: {}", email);
+        List<OrderEntity> orders = orderService.getOrdersByCustomerEmail(email);
+
+        if (orders.isEmpty()) {
+            logger.info("No orders found for customer email: {}", email);
+            return ResponseEntity.ok(Collections.emptyList());
+        }
+
+        logger.info("Found {} orders for customer email: {}", orders.size(), email);
+        return ResponseEntity.ok(orders);
+    }
 }

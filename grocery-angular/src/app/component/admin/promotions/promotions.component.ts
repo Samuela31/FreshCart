@@ -66,7 +66,9 @@ export class PromotionsComponent implements OnInit {
       },
       error: (err) => {
         console.error('Failed to create promotion', err);
-        alert('Failed to create promotion. Please check the input values.');
+        alert(
+          'Failed to create promotion. Please check the input values (Category should be unique)!'
+        );
       },
     });
   }

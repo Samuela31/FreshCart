@@ -11,6 +11,8 @@ import { ProductUpdateComponent } from './component/product/product-update/produ
 import { PromotionsComponent } from './component/admin/promotions/promotions.component';
 import { PaymentCreateComponent } from './component/payment/payment-create/payment-create.component';
 import { OrderPlacedComponent } from './component/order/order-placed/order-placed.component';
+import { CustomerProfileComponent } from './component/customer/customer-profile/customer-profile.component';
+import { OrderHistoryComponent } from './component/order/order-history/order-history.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -31,6 +33,18 @@ export const routes: Routes = [
   {
     path: 'order-placed',
     component: OrderPlacedComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ADMIN', 'CUSTOMER'] },
+  },
+  {
+    path: 'profile',
+    component: CustomerProfileComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ADMIN', 'CUSTOMER'] },
+  },
+  {
+    path: 'order-history',
+    component: OrderHistoryComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ADMIN', 'CUSTOMER'] },
   },

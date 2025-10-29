@@ -128,4 +128,9 @@ public class OrderService {
         }
         orderDao.deleteById(id);
     }
+    
+    public List<OrderEntity> getOrdersByCustomerEmail(String email) {
+        return orderDao.findByCustomerEmail(email);
+    }
+
 }
