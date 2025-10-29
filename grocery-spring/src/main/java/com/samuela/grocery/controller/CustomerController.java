@@ -87,4 +87,21 @@ public class CustomerController {
         logger.info("Customer deleted successfully with ID: {}", id);
         return ResponseEntity.noContent().build(); // 204 No Content
     }
+    
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CUSTOMER')")
+    @GetMapping("/email/{email}")
+    public ResponseEntity<CustomerEntity> getCustomerByEmail(@PathVariable String email) {
+        logger.info("Fetching customer with email: {}", email);
+
+        return customerService.getCustomerByEmail(email)
+                .map(customer -> {
+                    logger.info("Customer found with email: {}", email);
+                    return ResponseEntity.ok(customer);
+                })
+                .orElseThrow(() -> {
+                    logger.warn("Customer not found with email: {}", email);
+                    return new ResourceNotFoundException("Customer not found with email: " + email);
+                });
+    }
+
 }

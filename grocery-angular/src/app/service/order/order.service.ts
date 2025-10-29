@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { OrderRequest } from 'src/app/model/order/order-request';
 import { Order } from 'src/app/model/order/order';
+import { environment } from 'src/environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  private baseUrl = 'http://localhost:55420/grocery-project/api/orders';
+  //private baseUrl = 'http://localhost:55420/grocery-project/api/orders';
+  private baseUrl = environment.apiUrl + '/orders';
 
   constructor(private http: HttpClient) {}
 
@@ -49,5 +51,9 @@ export class OrderService {
     return this.http.get<Order[]>(
       `${this.baseUrl}/customer/email/${encodeURIComponent(email)}`
     );
+  }
+
+  cancelOrder(orderId: number): Observable<Order> {
+    return this.http.put<Order>(`${this.baseUrl}/${orderId}/cancel`, {});
   }
 }

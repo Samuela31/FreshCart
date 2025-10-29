@@ -1,12 +1,19 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4 fixed-top">
   <div class="container-fluid">
     <!-- Left side: Home -->
-    <a class="navbar-brand" *ngIf="!isAdminLoggedIn()" routerLink="/home"
-      ><i class="bi bi-basket2"></i> Home</a
+    <img
+      src="assets/fresh-cart.png"
+      alt="FreshCart Logo"
+      width="40"
+      height="40"
+      class="me-2 rounded-circle border border-light"
+    />
+    <a class="navbar-brand" *ngIf="!isAdminLoggedIn()" routerLink="/home">
+      FreshCart</a
     >
 
-    <a class="navbar-brand" *ngIf="isAdminLoggedIn()" routerLink="/admin-home"
-      ><i class="bi bi-basket2"></i> Home</a
+    <a class="navbar-brand" *ngIf="isAdminLoggedIn()" routerLink="/admin-home">
+      FreshCart</a
     >
 
     <!-- Right side: Login/Signup or Profile dropdown -->

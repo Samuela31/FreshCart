@@ -99,6 +99,16 @@ public class OrderController {
         logger.info("Order ID {} status updated to '{}'", id, updatedOrder.getOrderStatus());
         return ResponseEntity.ok(updatedOrder);
     }
+    
+    // Update order status to cancelled by customer
+    @PreAuthorize("hasAuthority('CUSTOMER')")
+    @PutMapping("/{id}/cancel")
+    public ResponseEntity<OrderEntity> cancelOrder(@PathVariable int id) {
+        logger.info("Cancelling order for order ID: {} ", id);
+        OrderEntity updatedOrder = orderService.updateOrderStatus(id, "CANCELLED");
+        logger.info("Order ID {} status updated to CANCELLED", id);
+        return ResponseEntity.ok(updatedOrder);
+    }
 
     // Delete an order
     @PreAuthorize("hasAuthority('ADMIN')")

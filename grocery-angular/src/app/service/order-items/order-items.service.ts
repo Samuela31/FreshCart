@@ -4,12 +4,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { OrderItem } from 'src/app/model/order-item/order-item';
+import { environment } from 'src/environment/environment';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderItemService {
-  private baseUrl = 'http://localhost:55420/grocery-project/api/order-items';
+  //private baseUrl = 'http://localhost:55420/grocery-project/api/order-items';
+  private baseUrl = environment.apiUrl + '/order-items';
 
   constructor(private http: HttpClient) {}
 

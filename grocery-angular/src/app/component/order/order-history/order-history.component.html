@@ -29,10 +29,10 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of order.orderItems">
-            <td>{{ item.product?.productName }}</td>
+            <td>{{ item.product.productName }}</td>
             <td>{{ item.productPrice | currency : "INR" }}</td>
             <td>{{ item.quantity }}</td>
-            <td>{{ item.subTotal | currency : "INR" }}</td>
+            <td>{{ item.subtotal | currency : "INR" }}</td>
           </tr>
         </tbody>
       </table>
@@ -44,6 +44,15 @@
             order.totalAmount | currency : "INR"
           }}</span>
         </h5>
+
+        <!-- Show cancel button only if status = 'PENDING' -->
+        <button
+          *ngIf="order.orderStatus === 'PENDING'"
+          (click)="cancelOrder(order.orderId!)"
+          class="btn btn-danger btn-sm ms-3"
+        >
+          Cancel Order
+        </button>
       </div>
     </div>
   </div>

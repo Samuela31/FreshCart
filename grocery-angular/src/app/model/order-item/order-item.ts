@@ -7,5 +7,5 @@ export interface OrderItem {
   product: Product;
   quantity: number;
   productPrice: number;
-  subTotal: number;
+  subtotal: number;
 }

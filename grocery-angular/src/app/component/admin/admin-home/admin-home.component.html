@@ -1,12 +1,16 @@
 <div class="container my-5">
   <h2 class="text-center mb-4">Welcome to Admin Dashboard!</h2>
 
+  <h6 class="text-center mb-4">
+    Manage inventory, orders, and customers all in one place
+  </h6>
+
   <div class="row g-4 justify-content-center">
     <!-- Add Inventory -->
     <div class="col-md-3">
       <div class="card text-center shadow-sm">
         <div class="card-body">
-          <i class="bi bi-box-seam display-4 text-primary"></i>
+          <i class="bi bi-box-seam display-4 text-dark"></i>
           <h5 class="card-title mt-3">Add Inventory</h5>
           <p class="card-text">Add new grocery items to your inventory.</p>
           <button class="btn btn-primary w-100" (click)="addProduct()">
@@ -20,10 +24,10 @@
     <div class="col-md-3">
       <div class="card text-center shadow-sm">
         <div class="card-body">
-          <i class="bi bi-pencil-square display-4 text-warning"></i>
+          <i class="bi bi-pencil-square display-4 text-dark"></i>
           <h5 class="card-title mt-3">Update Product</h5>
           <p class="card-text">Modify product details or pricing.</p>
-          <button class="btn btn-warning w-100" (click)="updateProduct()">
+          <button class="btn btn-primary w-100" (click)="updateProduct()">
             Go
           </button>
         </div>
@@ -34,10 +38,54 @@
     <div class="col-md-3">
       <div class="card text-center shadow-sm">
         <div class="card-body">
-          <i class="bi bi-megaphone-fill display-4 text-success"></i>
+          <i class="bi bi-megaphone-fill display-4 text-dark"></i>
           <h5 class="card-title mt-3">Promotions</h5>
           <p class="card-text">Create or manage discount campaigns.</p>
-          <button class="btn btn-success w-100" (click)="promotions()">
+          <button class="btn btn-primary w-100" (click)="promotions()">
+            Go
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4 justify-content-center">
+    <!-- List of products -->
+    <div class="col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-journal-text display-4 text-dark"></i>
+          <h5 class="card-title mt-3">Manage Products</h5>
+          <p class="card-text">View list of available products in store.</p>
+          <button class="btn btn-primary w-100" (click)="productsList()">
+            Go
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Order Status -->
+    <div class="col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-box2 display-4 text-dark"></i>
+          <h5 class="card-title mt-3">Update Order Status</h5>
+          <p class="card-text">Modify and manage order status of customers.</p>
+          <button class="btn btn-primary w-100" (click)="updateOrderStatus()">
+            Go
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manage Users -->
+    <div class="col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-person-lines-fill display-4 text-dark"></i>
+          <h5 class="card-title mt-3">Manage User Accounts</h5>
+          <p class="card-text">Suspend or manage customer accounts.</p>
+          <button class="btn btn-primary w-100" (click)="manageUsers()">
             Go
           </button>
         </div>

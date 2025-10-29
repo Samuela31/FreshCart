@@ -82,4 +82,10 @@ public class CustomerService {
         }
         customerDao.deleteById(id);
     }
+    
+    // Find customer by email
+    public Optional<CustomerEntity> getCustomerByEmail(String email) {
+        return Optional.ofNullable(customerDao.findByEmail(email));
+    }
+
 }

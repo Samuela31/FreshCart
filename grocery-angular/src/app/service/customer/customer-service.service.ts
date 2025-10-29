@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Customer } from 'src/app/model/customer/customer';
+import { environment } from 'src/environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CustomerService {
-  private baseUrl = 'http://localhost:55420/grocery-project/api/customers'; // Spring Boot base URL
+  //private baseUrl = 'http://localhost:55420/grocery-project/api/customers';
+  private baseUrl = environment.apiUrl + '/customers';
 
   constructor(private http: HttpClient) {}
 
@@ -41,5 +43,11 @@ export class CustomerService {
   // Get customer by ID (ADMIN)
   getCustomerById(id: number): Observable<Customer> {
     return this.http.get<Customer>(`${this.baseUrl}/${id}`);
+  }
+
+  // Fetch customer by email
+  getCustomerByEmail(email: string): Observable<Customer> {
+    const url = `${this.baseUrl}/email/${encodeURIComponent(email)}`;
+    return this.http.get<Customer>(url);
   }
 }

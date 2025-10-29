@@ -22,6 +22,7 @@ public class CategoryPromotionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    // We can't have 2 different discount promotions for same category
     @Column(name = "category", nullable = false, unique = true)
     @NotBlank
     private String category;

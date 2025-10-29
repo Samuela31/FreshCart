@@ -14,6 +14,7 @@ export class OrderHistoryComponent implements OnInit {
   orders: Order[] = [];
   userEmail: string | null = null;
   loading: boolean = true;
+  cancellingOrderId: number | null = null; // Track which order is being cancelled
 
   constructor(private orderService: OrderService) {}
 
@@ -26,7 +27,12 @@ export class OrderHistoryComponent implements OnInit {
       return;
     }
 
-    this.orderService.getOrdersByCustomerEmail(this.userEmail).subscribe({
+    this.loadOrders();
+  }
+
+  loadOrders(): void {
+    this.loading = true;
+    this.orderService.getOrdersByCustomerEmail(this.userEmail!).subscribe({
       next: (data) => {
         this.orders = data;
         this.loading = false;
@@ -38,5 +44,33 @@ export class OrderHistoryComponent implements OnInit {
         this.loading = false;
       },
     });
+  }
+
+  // Cancel order
+  cancelOrder(orderId: number): void {
+    if (confirm('Are you sure you want to cancel this order?')) {
+      this.cancellingOrderId = orderId;
+
+      this.orderService.cancelOrder(orderId).subscribe({
+        next: (updatedOrder) => {
+          alert(
+            `Order ID: ${updatedOrder.orderId} has been cancelled successfully.`
+          );
+
+          // Update local state to reflect change instantly
+          const order = this.orders.find((o) => o.orderId === orderId);
+          if (order) {
+            order.orderStatus = 'CANCELLED';
+          }
+
+          this.cancellingOrderId = null;
+        },
+        error: (err) => {
+          console.error('Error cancelling order:', err);
+          alert('Failed to cancel the order. Please try again.');
+          this.cancellingOrderId = null;
+        },
+      });
+    }
   }
 }

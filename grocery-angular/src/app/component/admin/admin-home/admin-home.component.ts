@@ -23,4 +23,16 @@ export class AdminHomeComponent {
   promotions() {
     this.router.navigate(['/promotions']);
   }
+
+  productsList() {
+    this.router.navigate(['/product-list']);
+  }
+
+  updateOrderStatus() {
+    this.router.navigate(['/order-status-update']);
+  }
+
+  manageUsers() {
+    this.router.navigate(['/customers-list']);
+  }
 }
