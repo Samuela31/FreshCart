@@ -66,10 +66,20 @@ jobs:
               sudo usermod -aG docker $USER
             fi
 
+            # Install Docker Compose standalone binary if missing
+            if ! command -v docker-compose &> /dev/null
+            then
+              echo "Docker Compose not found. Installing standalone Docker Compose v2..."
+              DOCKER_COMPOSE_VERSION="v2.27.1"
+              sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+              sudo chmod +x /usr/local/bin/docker-compose
+              sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+            fi
+
             echo "Environment ready"
 
-            # Pull latest images and deploy using Docker Compose v2
+            # Pull latest images and deploy
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/spring-backend:latest
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/angular-frontend:latest
-            sudo docker compose down
-            sudo docker compose up -d --remove-orphans
+            sudo docker-compose down
+            sudo docker-compose up -d --remove-orphans
